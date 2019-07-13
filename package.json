@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/pepper00nie/Fullstack19-backend#readme",
   "devDependencies": {
+    "morgan": "^1.9.1",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
