@@ -13,7 +13,15 @@ mongoose.connect(url, { useNewUrlParser: true })
 const personSchema = new mongoose.Schema({ name: String, number: String })
 const Person = new mongoose.model('Person', personSchema)
 
-if (process.argv.length > 3) {
+if (process.argv.length === 4) {
+  const id = process.argv[3]
+  Person
+    .findById(id)
+    .then(person => {
+      console.log(person)
+      mongoose.connection.close()
+    })
+} else if (process.argv.length === 5) {
   const name = process.argv[3]
   const number = process.argv[4]
 
@@ -27,7 +35,7 @@ if (process.argv.length > 3) {
   Person
     .find({})
     .then(res => {
-      res.forEach(n => console.log(`${n.name} ${n.number}`))
+      res.forEach(n => console.log(`${n.name} ${n.number} ${n.id}`))
       mongoose.connection.close()
     })
 }
