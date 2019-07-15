@@ -4,6 +4,8 @@ const url = process.env.MONGODB_URI
 
 console.log('Connecting to MongoDB at ', url)
 
+mongoose.set('useFindAndModify', false)
+
 mongoose
 	.connect(url, { useNewUrlParser: true })
 	.then(result => {
