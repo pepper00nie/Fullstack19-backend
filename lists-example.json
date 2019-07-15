@@ -1,0 +1,70 @@
+"lists": [
+  {
+    "name": "Jorman kauppalista",
+    "owner": "jorma@jorma.io",
+    "items": [
+      {
+        "text": "Täysmaito",
+        "checked": false
+      },
+      {
+        "text": "Kananmunat",
+        "checked": true
+      },
+      {
+        "text": "Keskiolut",
+        "checked": false
+      }
+    ]
+  },
+  {
+    "name": "Pirjon kudontaprojektit",
+    "owner": "pirjo.pirjonen@pirjon.com",
+    "items": [
+      {
+        "text": "Villasukat",
+        "checked": true
+      },
+      {
+        "text": "Neule",
+        "checked": false
+      }
+    ]
+  }
+]
+
+const listSchema = new mongoose.Schema({
+    name: String,
+    owner: String,
+    items: [
+      {
+        content: String,
+        checked: Boolean
+      }
+    ]
+})
+
+const List = mongoose.model('List', listSchema)
+
+const list = new List({
+  name: "Jorman kauppalista",
+  owner: "jorma@jorma.io",
+  items: [
+    {
+      content: "Täysmaito",
+      checked: false
+    },
+    {
+      content: "Kananmunat",
+      checked: true
+    },
+    {
+      content: "Keskiolut",
+      checked: false
+    }
+  ]
+})
+
+list.save().then(res => {
+  mongoose.connection.close()
+})
