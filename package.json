@@ -10,7 +10,8 @@
     "build:ui": "rm -rf build && cd ../Fullstack19/osa2/phonebook && npm run build --prod && cp -r build ../../../Fullstack19-backend/",
     "deploy": "git push heroku master",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
-    "logs:prod": "heroku logs --tail"
+    "logs:prod": "heroku logs --tail",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "homepage": "https://github.com/pepper00nie/Fullstack19-backend#readme",
   "devDependencies": {
+    "eslint": "^6.0.1",
     "nodemon": "^1.19.1"
   },
   "dependencies": {

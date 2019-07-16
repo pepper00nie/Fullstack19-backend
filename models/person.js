@@ -14,11 +14,11 @@ mongoose
   })
   .catch(error => {
     console.log('Error connecting to MongoDB: ', error.message)
-  }) 
+  })
 
-const personSchema = new mongoose.Schema({ 
-  name: { type: String, minlength: 3, required: true, unique: true }, 
-  number: { type: String, minlength: 3, required: true } 
+const personSchema = new mongoose.Schema({
+  name: { type: String, minlength: 3, required: true, unique: true },
+  number: { type: String, minlength: 3, required: true }
 })
 
 personSchema.plugin(uniqueValidator)

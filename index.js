@@ -10,8 +10,8 @@ app.use(express.static('build'))
 app.use(cors())
 app.use(bodyParser.json())
 
-morgan.token('res-body', (req, res) => {
-  if (req.method === "POST") {
+morgan.token('res-body', req => {
+  if (req.method === 'POST') {
     return JSON.stringify(req.body)
   }
 })
@@ -84,7 +84,7 @@ app.get('/info', (req, res) => {
     })
 })
 
-const unknownEndpoint = (req, res) => {
+const unknownEndpoint = (req, res) => {
   res.status(404).send({ error: 'unknown endpoint' })
 }
 
@@ -104,7 +104,7 @@ const errorHandler = (error, req, res, next) => {
 
 app.use(errorHandler)
 
-const port = process.env.PORT || 3001
-app.listen(port, () => {
+const port = process.env.PORT || 3001
+app.listen(port, () => {
   console.log(`Server is running at port ${port}`)
 })
