@@ -41,10 +41,6 @@ app.post('/api/persons', (req, res, next) => {
   const name = req.body.name
   const number = req.body.number
 
-  if (!name || !number) {
-    return res.status(400).json({ error: "missing name or number in request" })
-  }
-
   const newPerson = new Person({ name: name, number: number })
 
   newPerson
@@ -99,6 +95,8 @@ const errorHandler = (error, req, res, next) => {
 
   if (error.name === 'CastError' && error.kind == 'ObjectId') {
     return res.status(400).send({ error: 'incorrect id format' })
+  } else if (error.name === 'ValidationError') {
+    return res.status(400).json({ error: error.message })
   }
 
   next(error)

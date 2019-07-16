@@ -7,17 +7,17 @@ console.log('Connecting to MongoDB at ', url)
 mongoose.set('useFindAndModify', false)
 
 mongoose
-	.connect(url, { useNewUrlParser: true })
-	.then(result => {
-		console.log('Connected to MongoDB')
-	})
-	.catch(error => {
-		console.log('Error connecting to MongoDB: ', error.message)
-	}) 
+  .connect(url, { useNewUrlParser: true })
+  .then(result => {
+    console.log('Connected to MongoDB')
+  })
+  .catch(error => {
+    console.log('Error connecting to MongoDB: ', error.message)
+  }) 
 
 const personSchema = new mongoose.Schema({ 
-	name: String, 
-	number: String 
+  name: { type: String, minlength: 3, required: true }, 
+  number: { type: String, minlength: 3, required: true } 
 })
 
 personSchema.set('toJSON', {
